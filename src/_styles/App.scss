@@ -1,0 +1,77 @@
+html,
+body {
+    padding: 0;
+    margin: 0;
+    background: #272730;
+    color: #f7f7f7;
+    overscroll-behavior: none;
+}
+
+#root {
+    height: 900vh;
+}
+
+#scroll-marker {
+    position: absolute;
+    top: 0;
+}
+
+canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+}
+
+.App {
+    text-align: center;
+    height: 100vh;
+}
+
+h1 {
+    color: f7f7f7;
+}
+
+.floating-controls {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    z-index: 1;
+    padding: 1em;
+    box-sizing: border-box;
+}
+.floating-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    z-index: 1;
+}
+.debug {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 25%;
+    height: auto;
+    z-index: 1;
+    text-shadow: #272730 0 0 1px;
+    text-align: left;
+    padding: 1em;
+    font-size: 66%;
+    overflow-y: auto;
+}
+
+.floating-range {
+    position: fixed;
+    bottom: 4rem;
+    left: 4rem;
+    width: 300px;
+    height: auto;
+    z-index: 1000;
+    padding: 1em;
+    box-sizing: border-box;
+}
