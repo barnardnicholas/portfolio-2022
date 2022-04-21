@@ -1,10 +1,12 @@
 import "./_styles/App.scss";
-import ModelTests from "./components/ModelTests";
+import Scene from "./components/Scene";
+import MainContent from "./components/content/MainContent";
 
 function App() {
   return (
     <div className="App">
-      <ModelTests />
+      <Scene />
+      <MainContent />
     </div>
   );
 }

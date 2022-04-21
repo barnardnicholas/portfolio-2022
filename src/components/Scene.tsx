@@ -3,14 +3,13 @@ import { Canvas as ThreeCanvas, useLoader } from "react-three-fiber";
 import { Vector3, MeshLambertMaterial, Euler } from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import CameraRig from "./CameraRig";
-import { cameraBounds } from "../constants/camera";
+import { getPositionFromScroll } from "../utils/utils";
 
 const sphereScale = new Vector3(0.25, 0.25, 0.25);
 const modelScale = new Vector3(2, 2, 2);
 
 const CanvasContent = () => {
   const gltf = useLoader(GLTFLoader, "/models/alley/scene.gltf");
-
   return (
     <>
       <color attach="background" args={["#f2f2f2"]} />
@@ -34,8 +33,8 @@ const CanvasContent = () => {
         <sphereBufferGeometry attach="geometry" />
       </mesh>
       <mesh
-        position={new Vector3(0, 13, -80)}
-        rotation={new Euler(0, -Math.PI - 0.04, 0.04)}
+        position={new Vector3(0.5, -13, -80)}
+        rotation={new Euler(0, -Math.PI + 0.04, Math.PI + 0.04)}
         scale={modelScale}
         castShadow
         receiveShadow
@@ -49,17 +48,17 @@ const CanvasContent = () => {
 
 const Canvas: React.FC = () => {
   const canvasProps = {
-    camera: { fov: 75, position: new Vector3(0, 0, cameraBounds.top) },
+    camera: { fov: 75, position: new Vector3(0, 0, getPositionFromScroll()) },
   };
 
   return (
-    <>
+    <div className="canvas-container">
       <ThreeCanvas {...canvasProps} shadows dpr={[1, 2]}>
         <Suspense fallback={<></>}>
           <CanvasContent />
         </Suspense>
       </ThreeCanvas>
-    </>
+    </div>
   );
 };
 
