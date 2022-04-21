@@ -12,6 +12,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #222222;
 }
 
 code {
@@ -54,6 +55,13 @@ main {
 
   .content {
     grid-column: 2;
+  }
+
+  @media screen and (max-width: 800px) {
+    grid-template-columns: 1fr;
+    .content {
+      grid-column: 1;
+    }
   }
 }
 
