@@ -1,6 +1,6 @@
 import React, { Suspense } from "react";
 import { Canvas as ThreeCanvas, useLoader } from "react-three-fiber";
-import { Vector3, MeshLambertMaterial, Euler } from "three";
+import { Vector3, MeshLambertMaterial, Euler, MeshPhongMaterial } from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import CameraRig from "./CameraRig";
 import { getPositionFromScroll } from "../utils/utils";
@@ -9,7 +9,8 @@ const sphereScale = new Vector3(0.25, 0.25, 0.25);
 const modelScale = new Vector3(2, 2, 2);
 
 const CanvasContent = () => {
-  const gltf = useLoader(GLTFLoader, "/models/alley/scene.gltf");
+  const gltf = useLoader(GLTFLoader, "/models/dummyalley/dummyalley.gltf");
+  console.log(gltf);
   return (
     <>
       <color attach="background" args={["#f2f2f2"]} />
@@ -33,11 +34,12 @@ const CanvasContent = () => {
         <sphereBufferGeometry attach="geometry" />
       </mesh>
       <mesh
-        position={new Vector3(0.5, -13, -80)}
-        rotation={new Euler(0, -Math.PI + 0.04, Math.PI + 0.04)}
+        position={new Vector3(1, -13, -80)}
+        rotation={new Euler(0, -Math.PI, Math.PI)}
         scale={modelScale}
-        castShadow
-        receiveShadow
+        material={gltf.materials["Material.001"]}
+        // castShadow
+        // receiveShadow
       >
         <primitive object={gltf.scene} />
       </mesh>
