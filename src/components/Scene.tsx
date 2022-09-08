@@ -1,6 +1,12 @@
 import React, { Suspense } from "react";
 import { Canvas as ThreeCanvas, useLoader } from "react-three-fiber";
-import { Vector3, MeshLambertMaterial, Euler, MeshPhongMaterial } from "three";
+import {
+  Vector3,
+  MeshLambertMaterial,
+  Euler,
+  MeshPhongMaterial,
+  MeshStandardMaterial,
+} from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import CameraRig from "./CameraRig";
 import { getPositionFromScroll } from "../utils/utils";
@@ -14,13 +20,13 @@ const CanvasContent = () => {
   return (
     <>
       <color attach="background" args={["#f2f2f2"]} />
-      <fog attach="fog" args={["#f2f2f2", 1, 180]} />
+      {/* <fog attach="fog" args={["#f2f2f2", 1, 180]} /> */}
       <ambientLight />
       <spotLight
         castShadow
         intensity={8}
         angle={Math.PI / 10}
-        position={[10, 10, 10]}
+        position={[0, 10, 10]}
         shadow-mapSize-width={2048}
         shadow-mapSize-height={2048}
       />
@@ -37,11 +43,13 @@ const CanvasContent = () => {
         position={new Vector3(1, -13, -80)}
         rotation={new Euler(0, -Math.PI, Math.PI)}
         scale={modelScale}
-        material={gltf.materials["Material.001"]}
-        // castShadow
-        // receiveShadow
+        castShadow
+        receiveShadow
       >
-        <primitive object={gltf.scene} />
+        <primitive
+          object={gltf.scene}
+          material={new MeshPhongMaterial({ color: "purple" })}
+        />
       </mesh>
       <CameraRig />
     </>
