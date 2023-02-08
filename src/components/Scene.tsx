@@ -36,8 +36,9 @@ const CanvasContent = () => {
         position={new Vector3(0.5, -13, -80)}
         rotation={new Euler(0, -Math.PI + 0.04, Math.PI + 0.04)}
         scale={modelScale}
-        castShadow
-        receiveShadow
+        material={gltf.materials["Material.001"]}
+        // castShadow
+        // receiveShadow
       >
         <primitive object={gltf.scene} />
       </mesh>
