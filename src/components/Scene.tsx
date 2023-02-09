@@ -1,11 +1,10 @@
 import React, { Suspense } from "react";
 import { Canvas as ThreeCanvas, useLoader } from "react-three-fiber";
-import { Vector3, MeshLambertMaterial, Euler } from "three";
+import { Vector3, Euler } from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import CameraRig from "./CameraRig";
 import { getPositionFromScroll } from "../utils/utils";
 
-const sphereScale = new Vector3(0.25, 0.25, 0.25);
 const modelScale = new Vector3(2, 2, 2);
 
 const CanvasContent = () => {
@@ -24,21 +23,10 @@ const CanvasContent = () => {
         shadow-mapSize-height={2048}
       />
       <mesh
-        position={new Vector3(0, 0.5, 0)}
-        scale={sphereScale}
-        material={new MeshLambertMaterial({ color: "purple" })}
-        castShadow
-        receiveShadow
-      >
-        <sphereBufferGeometry attach="geometry" />
-      </mesh>
-      <mesh
         position={new Vector3(0.5, -13, -80)}
         rotation={new Euler(0, -Math.PI + 0.04, Math.PI + 0.04)}
         scale={modelScale}
         material={gltf.materials["Material.001"]}
-        // castShadow
-        // receiveShadow
       >
         <primitive object={gltf.scene} />
       </mesh>
